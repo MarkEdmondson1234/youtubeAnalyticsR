@@ -8,9 +8,20 @@ The Google Documentation for this API is [here](http://developers.google.com/you
 
 ## Setup
 
-Activate the YouTube API in your google project.
+1. Get a Google Project
+2. Activate the YouTube API in your google project.
+3. Get the OAuth2 client ID and secret (see GoogleAuthR readme for details)
+4. Set options `options(googleAuthR.client_id = XXX)` and `options(googleAuthR.client_secret = )`
+5. Load the library
+6. Run `yt_auth()` and authenticate with your user
+7. Run `yt_analytics()` to get data
+
+Work in progress, and requests please file a Github issue. 
 
 ```r
+options(googleAuthR.client_id = XXX)
+options(googleAuthR.client_secret = XXX)
+
 library(youtubeAnalyticsR)
 
 ## authenticate with a user who has access to the YouTube channel you want to analyse
@@ -27,4 +38,4 @@ ya
 #3  2016-09-13 29810
 #4  2016-09-18   442
 #.   ....        ...
-
+```
