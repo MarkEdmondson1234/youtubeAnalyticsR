@@ -16,10 +16,9 @@
 #' Then run \code{googleAuthR::gar_auth()} to authenticate.
 #' See \code{\link[googleAuthR]{gar_auth}} for details.
 #'
-#' @param ids Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data
-
+#' @param id Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data
+#' @param type channel or contentOwner
 #' @param start.date The start date for fetching YouTube Analytics data
-
 #' @param end.date The end date for fetching YouTube Analytics data
 
 #' @param metrics A comma-separated list of YouTube Analytics metrics, such as views or likes,dislikes
@@ -35,9 +34,13 @@
 #' @param sort A comma-separated list of dimensions or metrics that determine the sort order for YouTube Analytics data
 
 #' @param start.index An index of the first entity to retrieve
+#'
+#' @seealso \href{https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports}
+#'
 #' @importFrom googleAuthR gar_api_generator
 #' @export
-yt_analytics <- function(ids,
+yt_analytics <- function(id,
+                         type = c("channel","contentOwner"),
                          start.date,
                          end.date,
                          metrics,
@@ -48,6 +51,7 @@ yt_analytics <- function(ids,
                          sort = NULL,
                          start.index = NULL) {
 
+  type <-  match.arg(type)
 
   url <- "https://www.googleapis.com/youtube/analytics/v1/reports"
 
@@ -55,7 +59,7 @@ yt_analytics <- function(ids,
                dimensions = dimensions,
                `end-date` = end.date,
                filters = filters,
-               ids = ids,
+               ids = paste0(type,"==", id),
                `max-results` = max.results,
                metrics = metrics,
                sort = sort,
@@ -67,7 +71,7 @@ yt_analytics <- function(ids,
   f <- gar_api_generator(url,
                          "GET",
                          pars_args = pars,
-                         data_parse_function = function(x) x)
+                         data_parse_function = analytics_parse)
 
   f()
 
@@ -75,4 +79,14 @@ yt_analytics <- function(ids,
 }
 
 
+analytics_parse <- function(x){
+
+  stopifnot(x$kind == "youtubeAnalytics#resultTable")
+
+  out <- as.data.frame(x$rows, stringsAsFactors = FALSE)
+  names(out) <- x$columnHeaders$name
+
+  out
+
+}
 

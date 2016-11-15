@@ -4,12 +4,14 @@
 \alias{yt_analytics}
 \title{Retrieve your YouTube Analytics reports.}
 \usage{
-yt_analytics(ids, start.date, end.date, metrics, currency = NULL,
-  dimensions = NULL, filters = NULL, max.results = NULL, sort = NULL,
-  start.index = NULL)
+yt_analytics(id, type = c("channel", "contentOwner"), start.date, end.date,
+  metrics, currency = NULL, dimensions = NULL, filters = NULL,
+  max.results = NULL, sort = NULL, start.index = NULL)
 }
 \arguments{
-\item{ids}{Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data}
+\item{id}{Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data}
+
+\item{type}{channel or contentOwner}
 
 \item{start.date}{The start date for fetching YouTube Analytics data}
 
@@ -47,5 +49,7 @@ See \code{\link[googleAuthR]{gar_auth}} for details.
 }
 \seealso{
 \href{http://developers.google.com/youtube/analytics/}{Google Documentation}
+
+\href{https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports}
 }
 
