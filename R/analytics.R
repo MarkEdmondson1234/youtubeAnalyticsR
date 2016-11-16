@@ -12,16 +12,16 @@
 #' \item https://www.googleapis.com/auth/yt-analytics.readonly
 #' }
 #'
-#' Set \code{options(googleAuthR.scopes.selected = c(https://www.googleapis.com/auth/youtube, https://www.googleapis.com/auth/youtube.readonly, https://www.googleapis.com/auth/yt-analytics-monetary.readonly, https://www.googleapis.com/auth/yt-analytics.readonly)}
-#' Then run \code{googleAuthR::gar_auth()} to authenticate.
-#' See \code{\link[googleAuthR]{gar_auth}} for details.
+#' Look up possible metrics and dimensions here:
+#' \href{https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports}{metric and dimension reference}
+#'
 #'
 #' @param id Identifies the YouTube channel or content owner for which you are retrieving YouTube Analytics data
 #' @param type channel or contentOwner
 #' @param start.date The start date for fetching YouTube Analytics data
 #' @param end.date The end date for fetching YouTube Analytics data
 
-#' @param metrics A comma-separated list of YouTube Analytics metrics, such as views or likes,dislikes
+#' @param metrics A character vector of YouTube metrics, such as \code{c("views","likes","dislikes")}
 
 #' @param currency The currency to which financial metrics should be converted
 
@@ -35,7 +35,6 @@
 
 #' @param start.index An index of the first entity to retrieve
 #'
-#' @seealso \href{https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports}
 #'
 #' @importFrom googleAuthR gar_api_generator
 #' @export
@@ -53,6 +52,9 @@ yt_analytics <- function(id,
 
   type <-  match.arg(type)
 
+  start.date <- as.character(as.Date(start.date))
+  end.date <- as.character(as.Date(end.date))
+
   url <- "https://www.googleapis.com/youtube/analytics/v1/reports"
 
   pars <- list(currency = currency,
@@ -61,7 +63,7 @@ yt_analytics <- function(id,
                filters = filters,
                ids = paste0(type,"==", id),
                `max-results` = max.results,
-               metrics = metrics,
+               metrics = paste(metrics, collapse = ","),
                sort = sort,
                `start-date` = start.date,
                `start-index` = start.index)
@@ -83,10 +85,27 @@ analytics_parse <- function(x){
 
   stopifnot(x$kind == "youtubeAnalytics#resultTable")
 
-  out <- as.data.frame(x$rows, stringsAsFactors = FALSE)
-  names(out) <- x$columnHeaders$name
+  if(nrow(x$rows) > 0){
+    out <- as.data.frame(x$rows, stringsAsFactors = FALSE)
+    names(out) <- x$columnHeaders$name
 
-  out
+    metrics <- x$columnHeaders$name[x$columnHeaders$columnType == "METRIC"]
+    dims <- x$columnHeaders$name[x$columnHeaders$columnType != "METRIC"]
+    metric_df <- as.data.frame(lapply(out[,metrics], as.numeric))
+    dimension_df <- out[,dims, drop = FALSE]
+
+    binded <- cbind(dimension_df, metric_df)
+    if("day" %in% names(binded)){
+      binded$day <- as.Date(binded$day)
+      binded <- binded[order(binded$day),]
+    }
+
+  } else {
+    message("No data found")
+    binded <- NULL
+  }
+
+  binded
 
 }
 

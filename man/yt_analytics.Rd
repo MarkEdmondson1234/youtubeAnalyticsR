@@ -17,7 +17,7 @@ yt_analytics(id, type = c("channel", "contentOwner"), start.date, end.date,
 
 \item{end.date}{The end date for fetching YouTube Analytics data}
 
-\item{metrics}{A comma-separated list of YouTube Analytics metrics, such as views or likes,dislikes}
+\item{metrics}{A character vector of YouTube metrics, such as \code{c("views","likes","dislikes")}}
 
 \item{currency}{The currency to which financial metrics should be converted}
 
@@ -43,13 +43,10 @@ Authentication scopes used by this function are:
 \item https://www.googleapis.com/auth/yt-analytics.readonly
 }
 
-Set \code{options(googleAuthR.scopes.selected = c(https://www.googleapis.com/auth/youtube, https://www.googleapis.com/auth/youtube.readonly, https://www.googleapis.com/auth/yt-analytics-monetary.readonly, https://www.googleapis.com/auth/yt-analytics.readonly)}
-Then run \code{googleAuthR::gar_auth()} to authenticate.
-See \code{\link[googleAuthR]{gar_auth}} for details.
+Look up possible metrics and dimensions here:
+\href{https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports}{metric and dimension reference}
 }
 \seealso{
 \href{http://developers.google.com/youtube/analytics/}{Google Documentation}
-
-\href{https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports}
 }
 

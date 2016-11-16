@@ -31,7 +31,7 @@ yt_auth()
 ## Dimensions and metrics are here: https://developers.google.com/youtube/analytics/v1/channel_reports#video-reports
 ya <- yt_analytics("UCvcKAjtJAzVr0vgLNR5w7Fg", 
                   start.date = "2016-09-01", end.date = "2016-10-01", 
-                  metrics = "views,comments,likes,dislikes", dimensions = "day")
+                  metrics = c("views","comments","likes","dislikes"), dimensions = "day")
 ya
 #          day views comments likes dislikes
 #1  2016-09-23    49        0     1        0
