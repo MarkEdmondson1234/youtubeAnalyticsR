@@ -91,7 +91,7 @@ analytics_parse <- function(x){
 
     metrics <- x$columnHeaders$name[x$columnHeaders$columnType == "METRIC"]
     dims <- x$columnHeaders$name[x$columnHeaders$columnType != "METRIC"]
-    metric_df <- as.data.frame(lapply(out[,metrics], as.numeric))
+    metric_df <- as.data.frame(lapply(out[,metrics, drop = FALSE], as.numeric))
     dimension_df <- out[,dims, drop = FALSE]
 
     binded <- cbind(dimension_df, metric_df)
