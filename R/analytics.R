@@ -85,7 +85,7 @@ analytics_parse <- function(x){
 
   stopifnot(x$kind == "youtubeAnalytics#resultTable")
 
-  if(nrow(x$rows) > 0){
+  if(!is.null(x$rows)){
     out <- as.data.frame(x$rows, stringsAsFactors = FALSE)
     names(out) <- x$columnHeaders$name
 
