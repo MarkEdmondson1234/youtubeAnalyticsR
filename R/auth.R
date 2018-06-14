@@ -22,10 +22,6 @@
 #' @export
 yt_auth <- function(new_user = FALSE, no_auto = FALSE){
 
-  required_scopes <- c("https://www.googleapis.com/auth/cloud-platform",
-                       "https://www.googleapis.com/auth/compute")
-
-
   required_scopes <- c("https://www.googleapis.com/auth/youtube",
                        "https://www.googleapis.com/auth/youtube.readonly",
                        "https://www.googleapis.com/auth/yt-analytics-monetary.readonly",
@@ -34,7 +30,6 @@ yt_auth <- function(new_user = FALSE, no_auto = FALSE){
   googleAuthR::gar_auto_auth(required_scopes,
                              new_user = new_user,
                              no_auto = no_auto,
-                             environment_var = "YT_AUTH_FILE",
-                             travis_environment_var = "TRAVIS_YT_AUTH_FILE")
+                             environment_var = "YT_AUTH_FILE")
 }
 
