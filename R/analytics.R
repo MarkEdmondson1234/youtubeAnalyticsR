@@ -59,14 +59,14 @@ yt_analytics <- function(id,
 
   pars <- list(currency = currency,
                dimensions = dimensions,
-               `endDate` = end.date,
+               endDate = end.date,
                filters = filters,
                ids = paste0(type,"==", id),
-               `maxResults` = max.results,
+               maxResults = max.results,
                metrics = paste(metrics, collapse = ","),
                sort = sort,
-               `startDate` = start.date,
-               `startIndex` = start.index)
+               startDate = start.date,
+               startIndex = start.index)
 
   pars <- rmNullObs(pars)
   # youtubeAnalytics.reports.query
