@@ -1,6 +1,6 @@
 Package: youtubeAnalyticsR
 Title: YouTube Analytics API
-Version: 0.0.0.9000
+Version: 0.0.1.9000
 Authors@R: c(person("Mark", "Edmondson",email = "m@sunholo.com",
                        role = c("aut", "cre")))
 Description: Retrieves your YouTube Analytics data. Auto-generated via

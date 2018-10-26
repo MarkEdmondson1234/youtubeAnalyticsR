@@ -55,18 +55,18 @@ yt_analytics <- function(id,
   start.date <- as.character(as.Date(start.date))
   end.date <- as.character(as.Date(end.date))
 
-  url <- "https://www.googleapis.com/youtube/analytics/v1/reports"
+  url <- "https://youtubeanalytics.googleapis.com/v2/reports"
 
   pars <- list(currency = currency,
                dimensions = dimensions,
-               `end-date` = end.date,
+               endDate = end.date,
                filters = filters,
                ids = paste0(type,"==", id),
-               `max-results` = max.results,
+               maxResults = max.results,
                metrics = paste(metrics, collapse = ","),
                sort = sort,
-               `start-date` = start.date,
-               `start-index` = start.index)
+               startDate = start.date,
+               startIndex = start.index)
 
   pars <- rmNullObs(pars)
   # youtubeAnalytics.reports.query

@@ -44,7 +44,7 @@ NULL
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 batchReportDefinitions.list <- function(onBehalfOfContentOwner) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/batchReportDefinitions"
+    url <- "https://youtubeanalytics.googleapis.com/v2/batchReportDefinitions"
     # youtubeAnalytics.batchReportDefinitions.list
     f <- gar_api_generator(url, "GET", pars_args = list(onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
@@ -74,7 +74,7 @@ batchReportDefinitions.list <- function(onBehalfOfContentOwner) {
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 batchReports.list <- function(batchReportDefinitionId, onBehalfOfContentOwner) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/batchReports"
+    url <- "https://youtubeanalytics.googleapis.com/v2/batchReports"
     # youtubeAnalytics.batchReports.list
     f <- gar_api_generator(url, "GET", pars_args = list(batchReportDefinitionId = batchReportDefinitionId,
         onBehalfOfContentOwner = onBehalfOfContentOwner), data_parse_function = function(x) x)
@@ -104,7 +104,7 @@ batchReports.list <- function(batchReportDefinitionId, onBehalfOfContentOwner) {
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 groupItems.delete <- function(id, onBehalfOfContentOwner = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groupItems"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groupItems"
     # youtubeAnalytics.groupItems.delete
     f <- gar_api_generator(url, "DELETE", pars_args = list(id = id, onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
@@ -135,7 +135,7 @@ groupItems.delete <- function(id, onBehalfOfContentOwner = NULL) {
 #' @family GroupItem functions
 #' @export
 groupItems.insert <- function(GroupItem, onBehalfOfContentOwner = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groupItems"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groupItems"
     # youtubeAnalytics.groupItems.insert
     f <- gar_api_generator(url, "POST", pars_args = list(onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
@@ -169,7 +169,7 @@ groupItems.insert <- function(GroupItem, onBehalfOfContentOwner = NULL) {
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 groupItems.list <- function(groupId, onBehalfOfContentOwner = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groupItems"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groupItems"
     # youtubeAnalytics.groupItems.list
     f <- gar_api_generator(url, "GET", pars_args = list(groupId = groupId, onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
@@ -199,7 +199,7 @@ groupItems.list <- function(groupId, onBehalfOfContentOwner = NULL) {
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 groups.delete <- function(id, onBehalfOfContentOwner = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groups"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groups"
     # youtubeAnalytics.groups.delete
     f <- gar_api_generator(url, "DELETE", pars_args = list(id = id, onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
@@ -230,7 +230,7 @@ groups.delete <- function(id, onBehalfOfContentOwner = NULL) {
 #' @family Group functions
 #' @export
 groups.insert <- function(Group, onBehalfOfContentOwner = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groups"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groups"
     # youtubeAnalytics.groups.insert
     f <- gar_api_generator(url, "POST", pars_args = list(onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
@@ -266,7 +266,7 @@ groups.insert <- function(Group, onBehalfOfContentOwner = NULL) {
 #' @importFrom googleAuthR gar_api_generator
 #' @export
 groups.list <- function(id = NULL, mine = NULL, onBehalfOfContentOwner = NULL, pageToken = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groups"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groups"
     # youtubeAnalytics.groups.list
     f <- gar_api_generator(url, "GET", pars_args = list(id = id, mine = mine, onBehalfOfContentOwner = onBehalfOfContentOwner,
         pageToken = pageToken), data_parse_function = function(x) x)
@@ -297,7 +297,7 @@ groups.list <- function(id = NULL, mine = NULL, onBehalfOfContentOwner = NULL, p
 #' @family Group functions
 #' @export
 groups.update <- function(Group, onBehalfOfContentOwner = NULL) {
-    url <- "https://www.googleapis.com/youtube/analytics/v1/groups"
+    url <- "https://youtubeanalytics.googleapis.com/v2/groups"
     # youtubeAnalytics.groups.update
     f <- gar_api_generator(url, "PUT", pars_args = list(onBehalfOfContentOwner = onBehalfOfContentOwner),
         data_parse_function = function(x) x)
